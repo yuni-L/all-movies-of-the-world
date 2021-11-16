@@ -2,6 +2,8 @@ html {
   font-size: 10px;
 }
 
+// $white: #ffffff;
+
 .size-11 { font-size: 1.1rem; }
 .size-12 { font-size: 1.2rem; }
 .size-13 { font-size: 1.3rem; }
@@ -20,6 +22,6 @@ html {
 	
 @media all and (max-width: 750px) {
   html {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
