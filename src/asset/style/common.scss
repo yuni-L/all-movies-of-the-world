@@ -20,8 +20,14 @@ html {
 }
 
 	
-@media all and (max-width: 750px) {
+@media all and (max-width: 1024px) {
   html {
     font-size: 14px;
   }
 }
+
+// @media all and (max-width: 750px) {
+//   html {
+//     font-size: 12px;
+//   }
+// }
