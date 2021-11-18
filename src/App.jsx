@@ -14,7 +14,7 @@ function App() {
         <div className="title size-20 bold">세상의 모든 영화</div>
       </header>
       <Input />
-      <Modal />
+      {/* <Modal /> */}
       <Movies />
     </div>
   );
