@@ -1,0 +1,19 @@
+@import '../../asset/style/variable';
+
+.movie {
+  &-wrap {
+    margin-top: 40px;
+    width: 100%;
+  }
+  &-title {
+    background-color: red;
+    text-align: left;
+  }
+  &-list {
+    display: flex;
+    overflow-x: scroll;
+    &-item {
+      flex-shrink: 0;
+    }
+  }
+}

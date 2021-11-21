@@ -5,23 +5,50 @@ import 'asset/style/common.scss'
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-const movies = () => {
+/**
+ * 
+ * @param {String} title - 무비 라인 대표 제목
+ * @param {String} type - 호출 할 api type
+ * @returns 
+ */
+const movies = ({title, type}) => {
   const [ isShowModal, setIsShowModal ] = useState(false);
   const [ movieList, setMovieList ] = useState([]);
   useEffect(() => {
-    const day = dayjs().subtract(1, 'day').format('YYYYMMDD');
-    const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${process.env.REACT_APP_MOVIES_API_KEY}&targetDt=${day}`
-    axios.get(url).then((response) => {
-      setMovieList(response.data.boxOfficeResult.dailyBoxOfficeList);
-    });
-  }, [])
+    loadMovieList();
+  }, []);
+  /**
+   * 영화 리스트 불러오기
+   */
+  const loadMovieList = () => {
+    switch(type) {
+      case 'boxOffice': {
+        const yesterday = dayjs().subtract(1, 'day').format('YYYYMMDD');  // api가 오늘 기준으로는 리스트 생성 불가
+        const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${process.env.REACT_APP_MOVIES_API_KEY}&targetDt=${yesterday}`
+        axios.get(url).then((response) => {
+          console.log('response', response);
+          setMovieList(response.data.boxOfficeResult.dailyBoxOfficeList);
+        });
+        break;
+      }
+      default:
+        break;
+    }
+  }
   return (
     <>
       {
         movieList.length ?
-        movieList.map((movie, index) => (
-          <div key={index} className='size-20'>{movie.movieNm}</div>
-        ))
+        <div className='movie-wrap'>
+          <div className='movie-title size-20 bold white'>{title}</div>
+          <div className='movie-list'>
+            {
+              movieList.map((movie, index) => (
+                <div key={index} className='movie-list-item size-20'>{movie.movieNm}</div>
+              ))
+            }
+          </div>
+        </div>
         : null
       }
       <button className='size-20' onClick={() => setIsShowModal(true)}>모달 테스트 버튼</button>

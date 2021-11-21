@@ -3,7 +3,7 @@ import './App.scss';
 import './asset/style/common.scss';
 
 import Input from './components/input/input'
-import Modal from './components/modal/modal'
+// import Modal from './components/modal/modal's
 import Movies from './components/movies/movies'
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       </header>
       <Input />
       {/* <Modal /> */}
-      <Movies />
+      <Movies title='국내 박스오피스 순위' type='boxOffice'/>
     </div>
   );
 }
