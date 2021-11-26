@@ -1,15 +1,22 @@
 /* eslint-disable react/style-prop-object */
-import React from 'react';
-import './modal.scss'
-import 'asset/style/common.scss'
+import React from "react";
+import "./modal.scss";
+import "asset/style/common.scss";
 
-const modal = ({setIsShowModal}) => {
-  console.log('modal');
+const modal = ({ setIsShowModal, setClickedMovieInfo, clickedMovieInfo }) => {
+  console.log("modal", clickedMovieInfo);
   return (
     <div>
-      <button onClick={() => setIsShowModal(false)}>닫기</button>
+      <button
+        onClick={() => {
+          setIsShowModal(false);
+          setClickedMovieInfo(null);
+        }}
+      >
+        닫기
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default modal
+export default modal;

@@ -6,6 +6,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 
 const naverApiHeader = {
+  // naver api 연결 headers 정보
   "X-Naver-Client-Id": process.env.REACT_APP_NAVER_CLIENT_ID,
   "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_CLIENT_SECRET_ID,
 };
@@ -19,6 +20,7 @@ const naverApiHeader = {
 const movies = ({ title, type }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [movieList, setMovieList] = useState([]);
+  const [clickedMovieInfo, setClickedMovieInfo] = useState(null);
 
   useEffect(async () => {
     loadMovieList();
@@ -68,18 +70,32 @@ const movies = ({ title, type }) => {
           <div className="movie-title size-20 bold white">{title}</div>
           <div className="movie-list">
             {movieList.map((movie, index) => (
-              <div key={index} className="movie-list-item size-20">
-                <img className="movie-list-item-img" src={movie.image} alt={movie.title} />
+              <div
+                key={index}
+                className="movie-list-item size-20"
+                onClick={() => {
+                  setIsShowModal(true);
+                  setClickedMovieInfo(movie);
+                }}
+              >
+                <img
+                  className="movie-list-item-img"
+                  src={movie.image}
+                  alt={movie.title}
+                />
                 <div>{movie.title}</div>
               </div>
             ))}
           </div>
         </div>
       ) : null}
-      <button className="size-20" onClick={() => setIsShowModal(true)}>
-        모달 테스트 버튼
-      </button>
-      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
+      {isShowModal && (
+        <Modal
+          setIsShowModal={setIsShowModal}
+          setClickedMovieInfo={setClickedMovieInfo}
+          clickedMovieInfo={clickedMovieInfo}
+        />
+      )}
     </>
   );
 };
