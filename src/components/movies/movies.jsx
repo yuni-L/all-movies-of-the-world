@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 const naverApiHeader = {
   "X-Naver-Client-Id": process.env.REACT_APP_NAVER_CLIENT_ID,
   "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_CLIENT_SECRET_ID,
-}
+};
 
 /**
  *
@@ -36,7 +36,8 @@ const movies = ({ title, type }) => {
         const yesterday = dayjs().subtract(1, "day").format("YYYYMMDD"); // api가 오늘 기준으로는 리스트 생성 불가
         const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${process.env.REACT_APP_MOVIES_API_KEY}&targetDt=${yesterday}`;
         await axios.get(url).then((response) => {
-          for(const movie of response.data.boxOfficeResult.dailyBoxOfficeList) {
+          for (const movie of response.data.boxOfficeResult
+            .dailyBoxOfficeList) {
             movieNameList.push(movie.movieNm);
           }
         });
@@ -46,15 +47,17 @@ const movies = ({ title, type }) => {
         break;
     }
     for (const movieName of movieNameList) {
-      await axios.get(
-        "/api/v1/search/movie.json",
-        {
+      await axios
+        .get("/api/v1/search/movie.json", {
           headers: naverApiHeader,
           params: { query: movieName },
-        }
-      ).then((response) => {
-        movieInfoList.push(response.data.items[0]);
-      });
+        })
+        .then((response) => {
+          response.data.items[0].title = response.data.items[0].title
+            .replace("<b>", "")
+            .replace("</b>", "");
+          movieInfoList.push(response.data.items[0]);
+        });
     }
     setMovieList(movieInfoList);
   };
@@ -66,8 +69,8 @@ const movies = ({ title, type }) => {
           <div className="movie-list">
             {movieList.map((movie, index) => (
               <div key={index} className="movie-list-item size-20">
-                <img src={movie.image} alt={movie.title}/>
-                {movie.title}
+                <img className="movie-list-item-img" src={movie.image} alt={movie.title} />
+                <div>{movie.title}</div>
               </div>
             ))}
           </div>

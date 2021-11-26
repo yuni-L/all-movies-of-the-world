@@ -13,7 +13,12 @@
     display: flex;
     overflow-x: scroll;
     &-item {
-      flex-shrink: 0;
+      // flex-shrink: 2;
+      background-color: aqua;
+      margin: 0 12px;
+      &-img {
+        width: 200px;
+      }
     }
   }
 }
