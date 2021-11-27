@@ -1,0 +1,17 @@
+body {
+  background-color: red;
+}
+.movie-modal {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 124px);
+  height: calc(100% - 124px);
+  margin: 50px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 12px;
+  &-close {
+    display: flex;
+    flex-direction: row;
+  }
+}
