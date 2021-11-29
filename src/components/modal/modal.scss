@@ -9,9 +9,20 @@ body {
   margin: 50px;
   border-radius: 20px;
   background-color: #fff;
-  padding: 12px;
+  padding: 20px;
+  text-align: left;
   &-close {
     display: flex;
     flex-direction: row;
+  }
+  &-contents {
+    padding: 12px 0;
+    &-info {
+      display: flex;
+      margin-top: 16px;
+      &-img {
+        width: 25%;
+      }
+    }
   }
 }

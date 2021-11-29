@@ -18,6 +18,16 @@ const modal = ({ setIsShowModal, setClickedMovieInfo, clickedMovieInfo }) => {
           size='30'
         />
         <div className="clear"></div>
+        {/* movie-modal-contents start */}
+        <div className="movie-modal-contents">
+          <span className="size-30 bold">{clickedMovieInfo.title}</span><br />
+          <span className="size-20">{clickedMovieInfo.subtitle}</span>
+          <div className="movie-modal-contents-info">
+            <img className="movie-modal-contents-info-img" src={clickedMovieInfo.image} alt={clickedMovieInfo.title}/>
+            <div>ssss</div>
+          </div>
+        </div>
+        {/* movie-modal-contents end */}
       </div>
     </div>
   );
