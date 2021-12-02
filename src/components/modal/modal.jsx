@@ -64,7 +64,7 @@ const modal = ({ setIsShowModal, setClickedMovieInfo, clickedMovieInfo }) => {
                 출연
                 {clickedMovieInfo.actor}
               </div>
-              {/* <div>줄거리 {clickedMovieInfo.plot['plotText']}</div> */}
+              <div>줄거리 {clickedMovieInfo.plot && clickedMovieInfo.plot.plotText}</div>
             </div>
           </div>
         </div>
